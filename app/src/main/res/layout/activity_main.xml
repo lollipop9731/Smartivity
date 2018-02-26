@@ -14,8 +14,8 @@
         android:id="@+id/play_image"
         android:layout_width="51dp"
         android:layout_height="72dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="244dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/play" />
@@ -65,14 +65,18 @@
         android:id="@+id/spielen_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
         android:layout_marginStart="8dp"
+        android:onClick="spielenclick"
         android:text="Spielen"
         android:textColor="@color/liladunke"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="@+id/play_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/play_image"
         app:layout_constraintTop_toTopOf="@+id/play_image"
-        android:onClick="spielenclick"/>
+        app:layout_constraintVertical_bias="0.51" />
 
     <TextView
         android:id="@+id/star_textview"

@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Actionbar ausblenden
-        getSupportActionBar().hide();
+
 
         //Zuweisungen
         spielen = (TextView)findViewById(R.id.spielen_textview);
@@ -52,21 +52,21 @@ public class MainActivity extends AppCompatActivity {
      */
     public void spielenclick(android.view.View view){
 
-        Toast.makeText(getApplicationContext(),"Jetzt startet Spielen",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Jetzt startet Spielen",Toast.LENGTH_SHORT).show();
     }
 
     public void settingsclick(android.view.View view){
 
-        Toast.makeText(getApplicationContext(),"Jetzt starten Einstellungen",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Jetzt starten Einstellungen",Toast.LENGTH_SHORT).show();
     }
     public void buchclick(android.view.View view){
 
-        Toast.makeText(getApplicationContext(),"So gehts!",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"So gehts!",Toast.LENGTH_SHORT).show();
     }
 
     public void starsclick(android.view.View view){
 
-        Toast.makeText(getApplicationContext(),"Mehr Wörter",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Mehr Wörter",Toast.LENGTH_SHORT).show();
     }
 
 
