@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lorenz.activitytogo.MainActivity"
+    android:background="@drawable/background"
+
+    >
+
+
+    <ImageView
+        android:id="@+id/play_image"
+        android:layout_width="51dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="240dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/play" />
+
+    <ImageView
+        android:id="@+id/smartivitiy_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/smartivity_kopie" />
+
+    <ImageView
+        android:id="@+id/star_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/play_image"
+        app:srcCompat="@drawable/stern" />
+
+    <ImageView
+        android:id="@+id/buch_image"
+        android:layout_width="40dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="@+id/star_image"
+        app:layout_constraintTop_toBottomOf="@+id/star_image"
+        app:srcCompat="@drawable/buch" />
+
+    <ImageView
+        android:id="@+id/settings_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/buch_image"
+        app:layout_constraintTop_toBottomOf="@+id/buch_image"
+        app:srcCompat="@drawable/settings" />
+
+    <TextView
+        android:id="@+id/spielen_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Spielen"
+        android:textColor="@color/liladunke"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="@+id/play_image"
+        app:layout_constraintStart_toEndOf="@+id/play_image"
+        app:layout_constraintTop_toTopOf="@+id/play_image"
+        android:onClick="spielenclick"/>
+
+    <TextView
+        android:id="@+id/star_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="Mehr Wörter!"
+        android:textColor="@color/liladunke"
+        android:textSize="32sp"
+        android:onClick="starsclick"
+        app:layout_constraintBottom_toBottomOf="@+id/star_image"
+        app:layout_constraintStart_toEndOf="@+id/star_image"
+        app:layout_constraintTop_toTopOf="@+id/star_image" />
+
+    <TextView
+        android:id="@+id/bücher_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="So geht's"
+        android:onClick="buchclick"
+        android:textColor="@color/liladunke"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/buch_image"
+        app:layout_constraintStart_toEndOf="@+id/buch_image"
+        app:layout_constraintTop_toTopOf="@+id/buch_image" />
+
+    <TextView
+        android:id="@+id/settings_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Einstellungen"
+        android:onClick="settingsclick"
+        android:textColor="@color/liladunke"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_image"
+        app:layout_constraintStart_toEndOf="@+id/settings_image"
+        app:layout_constraintTop_toTopOf="@+id/settings_image" />
+
+
+</android.support.constraint.ConstraintLayout>

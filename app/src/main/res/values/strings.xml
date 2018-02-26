@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ActivityToGo</string>
+    <string name="start">Spielen</string>
+    <string name="settings">Einstellungen</string>
+</resources>
