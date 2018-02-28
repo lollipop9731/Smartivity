@@ -1,6 +1,10 @@
 package com.example.lorenz.activitytogo;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.app.ActionBar;
+import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -8,9 +12,11 @@ import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class ImageViewTest extends AppCompatActivity implements View.OnClickListener {
@@ -33,6 +39,7 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
         baumstamm = (ImageView)findViewById(R.id.baumstamm_image);
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         displaywidth =(float) displayMetrics.widthPixels;
+        xcurrentPos = (float) ((displaywidth/displayMetrics.density)+200);
 
         baumstamm.setOnClickListener(this);
 
@@ -58,20 +65,15 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
                     return false;
                 };
 
+                //swipe to the left
                 if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX)>SWIPE_THRESHOLD_VELOCITY){
 
-                    animateImageView(baumstamm,400,-displaywidth,"x");
+                    //image goes to the left
+                    animateImageView(baumstamm,400,(float)(-0.75*displaywidth),"x");
 
+                    //swipe to right
                 }else if(e2.getX()-e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX)>SWIPE_THRESHOLD_VELOCITY){
-
-
-                    ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(baumstamm,"x",displaywidth);
-                    objectAnimator.setDuration(400);
-                    objectAnimator.start();
-
-
-
-
+                    animateImageView(baumstamm,400,(float)(1.5*displaywidth),"x");
                     };
 
 
@@ -97,10 +99,22 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
      * @param distance the distance -> postive or negative
      * @param propertyname "x" or "y"
      */
-    public void animateImageView(View view,int duration,float distance,String propertyname){
+    public void animateImageView(final View view, int duration, final float distance, String propertyname){
 
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view,propertyname,distance);
         objectAnimator.setDuration(duration);
+        objectAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if(distance>0) {
+                    Toast.makeText(getApplicationContext(), "Sehr gut richtig", Toast.LENGTH_SHORT).show();
+                    view.setX(500);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Faaaalsch", Toast.LENGTH_SHORT).show();
+                    view.setX(500);
+                }
+            }
+        });
         objectAnimator.start();
 
     }
