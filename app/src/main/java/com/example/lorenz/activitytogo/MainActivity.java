@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void spielenclick(android.view.View view){
 
-        Toast.makeText(getApplicationContext(),"Jetzt startet Spielen",Toast.LENGTH_SHORT).show();
+
 
         Intent intent =  new Intent(this, ImageViewTest.class);
         startActivity(intent);
@@ -63,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public void settingsclick(android.view.View view){
 
         Toast.makeText(getApplicationContext(),"Jetzt starten Einstellungen",Toast.LENGTH_SHORT).show();
-        Intent intent =  new Intent(this, ViewPagerTest.class);
-        startActivity(intent);
+
     }
     public void buchclick(android.view.View view){
 
