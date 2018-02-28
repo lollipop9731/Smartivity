@@ -1,9 +1,11 @@
 package com.example.lorenz.activitytogo;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,15 +55,22 @@ public class MainActivity extends AppCompatActivity {
     public void spielenclick(android.view.View view){
 
         Toast.makeText(getApplicationContext(),"Jetzt startet Spielen",Toast.LENGTH_SHORT).show();
+
+        Intent intent =  new Intent(this, ImageViewTest.class);
+        startActivity(intent);
     }
 
     public void settingsclick(android.view.View view){
 
         Toast.makeText(getApplicationContext(),"Jetzt starten Einstellungen",Toast.LENGTH_SHORT).show();
+        Intent intent =  new Intent(this, ViewPagerTest.class);
+        startActivity(intent);
     }
     public void buchclick(android.view.View view){
 
-        Toast.makeText(getApplicationContext(),"So gehts!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"So geht's!",Toast.LENGTH_SHORT).show();
+
+
     }
 
     public void starsclick(android.view.View view){

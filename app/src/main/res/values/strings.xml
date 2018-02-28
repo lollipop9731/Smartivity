@@ -2,4 +2,8 @@
     <string name="app_name">ActivityToGo</string>
     <string name="start">Spielen</string>
     <string name="settings">Einstellungen</string>
+    <string name="Lornez">Loooorenz ujhuhuhui</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
