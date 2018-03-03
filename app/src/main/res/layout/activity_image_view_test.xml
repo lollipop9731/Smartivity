@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.lorenz.activitytogo.ImageViewTest"
-    android:background="@drawable/background">
+    android:background="@drawable/gradient">
 
     <ImageView
         android:id="@+id/baumstamm_image"
@@ -24,6 +24,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baumstamm" />
+
+    <TextView
+        android:id="@+id/points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="158dp"
+        android:textSize="56sp"
+        android:textColor="@color/colorAccent"
+        android:text="0" />
 
 
 </RelativeLayout>

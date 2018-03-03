@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ImageViewTest extends AppCompatActivity implements View.OnClickListener {
@@ -27,7 +28,11 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
 
     private float xcurrentPos,ycurrentPos,displaywidth;
 
+    public int points;
+
+
     ImageView baumstamm;
+    TextView pointsText;
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
 
@@ -36,7 +41,12 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_view_test);
 
+        //initalizing
         baumstamm = (ImageView)findViewById(R.id.baumstamm_image);
+        pointsText = (TextView) findViewById(R.id.points);
+
+        points = 0;
+        //calculation animation
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         displaywidth =(float) displayMetrics.widthPixels;
         xcurrentPos = (float) ((displaywidth/displayMetrics.density)+200);
@@ -70,12 +80,17 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
 
                     //image goes to the left
                     animateImageView(baumstamm,400,(float)(-0.75*displaywidth),"x");
+                    points = points - 1;
+
 
                     //swipe to right
                 }else if(e2.getX()-e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX)>SWIPE_THRESHOLD_VELOCITY){
                     animateImageView(baumstamm,400,(float)(1.5*displaywidth),"x");
+                    points = points + 1;
                     };
 
+
+                pointsText.setText(Integer.toString(points));
 
 
 
@@ -107,12 +122,15 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
             @Override
             public void onAnimationEnd(Animator animation) {
                 if(distance>0) {
-                    Toast.makeText(getApplicationContext(), "Sehr gut richtig", Toast.LENGTH_SHORT).show();
-                    view.setX(500);
+
+                    view.setX(550);
+
                 }else{
-                    Toast.makeText(getApplicationContext(), "Faaaalsch", Toast.LENGTH_SHORT).show();
-                    view.setX(500);
+
+                    view.setX(550);
+
                 }
+
             }
         });
         objectAnimator.start();
