@@ -55,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public void spielenclick(android.view.View view){
 
 
-
-        Intent intent =  new Intent(this, ImageViewTest.class);
+        Intent intent = new Intent(this, SelectTeams.class);
         startActivity(intent);
     }
 

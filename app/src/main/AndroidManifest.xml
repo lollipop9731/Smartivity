@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ImageViewTest" />
+        <activity android:name=".SelectTeams"></activity>
     </application>
 
 </manifest>
