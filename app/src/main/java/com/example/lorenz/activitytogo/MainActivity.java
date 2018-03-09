@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Setzt die Schriftart
     public Typeface Schriftarttypeface(){
         AssetManager assetManager = getApplicationContext().getAssets();
         Typeface typeface = Typeface.createFromAsset(assetManager,"fonts/itckrist.ttf");
