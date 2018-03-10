@@ -1,15 +1,13 @@
 package com.example.lorenz.activitytogo;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Zuweisungen
-        spielen = (TextView)findViewById(R.id.spielen_textview);
-        buch = (TextView)findViewById(R.id.bücher_text);
-        stern = (TextView)findViewById(R.id.star_textview);
-        settings = (TextView)findViewById(R.id.settings_text);
+        spielen = (TextView) findViewById(R.id.spielen_textview);
+        buch = (TextView) findViewById(R.id.bücher_text);
+        stern = (TextView) findViewById(R.id.star_textview);
+        settings = (TextView) findViewById(R.id.settings_text);
 
 
         Typeface schrift = Schriftarttypeface();
@@ -35,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
         buch.setTypeface(schrift);
         stern.setTypeface(schrift);
         settings.setTypeface(schrift);
-
-
-
 
 
     }
@@ -68,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
     public void buchclick(android.view.View view){
 
         Toast.makeText(getApplicationContext(),"So geht's!",Toast.LENGTH_SHORT).show();
+
+        FragmentManager fragmentManager = getFragmentManager();
+        TeamOptionsDialog teamOptionsDialog = new TeamOptionsDialog();
+        teamOptionsDialog.show(fragmentManager, "TeamDialog");
 
 
     }

@@ -6,5 +6,10 @@
     <color name="colorAccent">#F44336</color>
     <color name="liladunke">#331144</color>
     <color name="weiss">#ffffff</color>
+    <color name="teamcion_lila">#060f3b</color>
+    <color name="gelb">#FFFF00</color>
+    <color name="schwarz">#000000</color>
+    <color name="grün">#1dc64d</color>
+    <color name="blau">#062cec</color>
 </resources>
 

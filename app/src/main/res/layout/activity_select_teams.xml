@@ -7,20 +7,31 @@
     tools:context="com.example.lorenz.activitytogo.SelectTeams"
     android:background="@drawable/gradient">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@null"
+
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
 
     <SeekBar
         android:id="@+id/seekbar_teams"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="90dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:max="6"
         android:progress="1"
-        android:splitTrack="false"
         android:progressDrawable="@drawable/seekbar_style"
+        android:splitTrack="false"
         android:thumb="@drawable/thumb_seekbar"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -31,13 +42,13 @@
         android:layout_marginStart="48dp"
         app:layout_constraintBottom_toTopOf="@+id/seekbar_teams"
         app:layout_constraintStart_toStartOf="parent"
+        android:tint="@color/teamcion_lila"
         app:srcCompat="@drawable/ic_team_svg" />
 
     <ImageView
         android:id="@+id/team_2"
         android:layout_width="73dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="16dp"
         android:layout_marginStart="180dp"
         app:layout_constraintBottom_toTopOf="@+id/team_1"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,12 +100,98 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="55dp"
         android:text="@string/SelectTeams"
         android:textAlignment="center"
+        android:textColor="@color/weiss"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/team_1_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="Team 1"
+        android:textSize="20sp"
+        android:textColor="@color/teamcion_lila"
+        app:layout_constraintEnd_toEndOf="@+id/team_1"
+        app:layout_constraintStart_toStartOf="@+id/team_1"
+        app:layout_constraintTop_toTopOf="@+id/team_1" />
+
+    <TextView
+        android:id="@+id/team_2_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="Team 2"
+        android:textColor="@color/teamcion_lila"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/team_2"
+        app:layout_constraintStart_toStartOf="@+id/team_2"
+        app:layout_constraintTop_toTopOf="@+id/team_2" />
+
+    <TextView
+        android:id="@+id/team_3_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="Team 3"
+        android:textColor="@color/teamcion_lila"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/team_3"
+        app:layout_constraintStart_toStartOf="@+id/team_3"
+        app:layout_constraintTop_toTopOf="@+id/team_3" />
+
+    <TextView
+        android:id="@+id/team_4_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="Team 4"
+        android:textColor="@color/teamcion_lila"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/team_4"
+        app:layout_constraintStart_toStartOf="@+id/team_4"
+        app:layout_constraintTop_toTopOf="@+id/team_4" />
+
+    <TextView
+        android:id="@+id/team_5_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="Team 5"
+        android:textColor="@color/teamcion_lila"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/team_5"
+        app:layout_constraintStart_toStartOf="@+id/team_5"
+        app:layout_constraintTop_toTopOf="@+id/team_5" />
+
+    <TextView
+        android:id="@+id/team_6_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="Team 6"
+        android:textColor="@color/teamcion_lila"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/team_6"
+        app:layout_constraintStart_toStartOf="@+id/team_6"
+        app:layout_constraintTop_toTopOf="@+id/team_6" />
+
 
 </android.support.constraint.ConstraintLayout>
