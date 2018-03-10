@@ -32,7 +32,8 @@
         android:layout_height="35dp"
         android:layout_weight="1"
         android:layout_margin="10dp"
-        app:srcCompat="@color/gelb" />
+        app:srcCompat="@color/gelb"
+        android:id="@+id/color_picker_yellow_id" />
 
     <ImageView
         android:layout_width="wrap_content"

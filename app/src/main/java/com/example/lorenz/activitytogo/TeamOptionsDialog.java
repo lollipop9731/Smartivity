@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,10 @@ public class TeamOptionsDialog extends DialogFragment {
 
     EditText team_name;
     String team_name_string;
-    TextView team1_name_new;
+    TextView team1_name_new, test;
+    int choosen_color;
+    ImageView color_gelb, color_green, color_black, color_blue, color_purple, color_red;
+
 
     private EditNameDialogListener listener;
 
@@ -47,7 +51,7 @@ public class TeamOptionsDialog extends DialogFragment {
 
 
     @Override
-    public Dialog onCreateDialog(Bundle bundle) {
+    public Dialog onCreateDialog(final Bundle bundle) {
 
         final Dialog dialog = new Dialog(getActivity());
 
@@ -55,10 +59,64 @@ public class TeamOptionsDialog extends DialogFragment {
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
         dialog.setContentView(R.layout.team_options_dialog);
+        //around of dialog should be transpartent otherwise ugly
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        choosen_color = 0;
+
+        //find ID from colorfields
+        color_gelb = (ImageView) dialog.findViewById(R.id.color_picker_yellow_id);
+        color_red = (ImageView) dialog.findViewById(R.id.color_picker_red_id);
+        color_green = (ImageView) dialog.findViewById(R.id.color_picker_green_id);
+        color_black = (ImageView) dialog.findViewById(R.id.color_picker_black_id);
+        color_blue = (ImageView) dialog.findViewById(R.id.color_picker_blue_id);
+        color_purple = (ImageView) dialog.findViewById(R.id.color_picker_purple_id);
+
 
 
         //Okay Button
+
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.color_picker_yellow_id:
+                        setColorFieldAlphas(color_gelb, 0.15f);
+                        choosen_color = R.color.gelb;
+                        break;
+                    case R.id.color_picker_purple_id:
+                        choosen_color = R.color.purple;
+                        setColorFieldAlphas(color_purple, 0.15f);
+                        break;
+                    case R.id.color_picker_black_id:
+                        choosen_color = R.color.schwarz;
+                        setColorFieldAlphas(color_black, 0.15f);
+                        break;
+                    case R.id.color_picker_blue_id:
+                        choosen_color = R.color.blau;
+                        setColorFieldAlphas(color_blue, 0.15f);
+                        break;
+                    case R.id.color_picker_green_id:
+                        choosen_color = R.color.grün;
+                        setColorFieldAlphas(color_green, 0.15f);
+                        break;
+                    case R.id.color_picker_red_id:
+                        choosen_color = R.color.rot;
+                        setColorFieldAlphas(color_red, 0.15f);
+                        break;
+                }
+
+            }
+        };
+
+        dialog.findViewById(R.id.color_picker_yellow_id).setOnClickListener(onClickListener);
+        dialog.findViewById(R.id.color_picker_purple_id).setOnClickListener(onClickListener);
+        dialog.findViewById(R.id.color_picker_red_id).setOnClickListener(onClickListener);
+        dialog.findViewById(R.id.color_picker_green_id).setOnClickListener(onClickListener);
+        dialog.findViewById(R.id.color_picker_black_id).setOnClickListener(onClickListener);
+        dialog.findViewById(R.id.color_picker_blue_id).setOnClickListener(onClickListener);
+
+
+
 
         dialog.findViewById(R.id.positive_button).setOnClickListener(new View.OnClickListener() {
 
@@ -66,13 +124,21 @@ public class TeamOptionsDialog extends DialogFragment {
             public void onClick(View v) {
 
                 team_name_string = team_name.getText().toString();
+                if (choosen_color == 0) {
+                    choosen_color = R.color.teamcion_lila;
+                }
 
-                listener.onFinishedEditDialog(team_name_string, R.color.colorAccent);
+                listener.onFinishedEditDialog(team_name_string, choosen_color);
+
+
 
                 dismiss();
             }
 
         });
+
+
+        //.setOnClickListener(onClickListener);
 
         return dialog;
     }
@@ -81,8 +147,14 @@ public class TeamOptionsDialog extends DialogFragment {
     public void onStart() {
         super.onStart();
 
-        team_name = (EditText) getDialog().findViewById(R.id.team_name);
-        team1_name_new = (TextView) getDialog().findViewById(R.id.team_1_tv);
+        Dialog dialog = getDialog();
+
+
+        team_name = (EditText) dialog.findViewById(R.id.team_name);
+        team1_name_new = (TextView) dialog.findViewById(R.id.team_1_tv);
+
+
+
     }
 
     /**
@@ -91,6 +163,26 @@ public class TeamOptionsDialog extends DialogFragment {
     public interface EditNameDialogListener {
         void onFinishedEditDialog(String inputText, int color);
     }
+
+    /**
+     * All views will have alpha, except view
+     *
+     * @param view  will have normal alpha
+     * @param alpha the alpha value
+     */
+    public void setColorFieldAlphas(ImageView view, float alpha) {
+        color_purple.setAlpha(alpha);
+        color_green.setAlpha(alpha);
+        color_gelb.setAlpha(alpha);
+        color_red.setAlpha(alpha);
+        color_blue.setAlpha(alpha);
+        color_black.setAlpha(alpha);
+
+        view.setAlpha(1f);
+
+    }
+
+
 
 
 }

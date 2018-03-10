@@ -11,5 +11,7 @@
     <color name="schwarz">#000000</color>
     <color name="grün">#1dc64d</color>
     <color name="blau">#062cec</color>
+    <color name="purple">#aa66cc</color>
+    <color name="rot">#cc0000</color>
 </resources>
 
