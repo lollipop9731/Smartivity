@@ -107,6 +107,7 @@
                 android:layout_weight="1"
                 android:layout_margin="10dp"
                 app:srcCompat="@color/gelb"
+                android:clickable="true"
                 android:id="@+id/color_picker_yellow_id" />
 
             <ImageView
@@ -152,7 +153,7 @@
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/closedialog_drawable"
+        android:background="@drawable/team_dialog_close"
         android:text="×"
         android:textColor="@color/teamcion_lila"
         android:textSize="24sp"

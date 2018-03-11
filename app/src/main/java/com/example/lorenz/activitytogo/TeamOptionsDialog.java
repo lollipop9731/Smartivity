@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import com.example.lorenz.activitytogo.R;
 
 /**
@@ -26,7 +28,8 @@ public class TeamOptionsDialog extends DialogFragment {
     String team_name_string;
     TextView team1_name_new, test;
     int choosen_color;
-    ImageView color_gelb, color_green, color_black, color_blue, color_purple, color_red;
+    ImageView color_gelb, color_green, color_black, color_blue, color_purple, color_red, choosen_color_image;
+    ArrayList<Integer> chosenColors = new ArrayList<>();
 
 
     private EditNameDialogListener listener;
@@ -63,6 +66,7 @@ public class TeamOptionsDialog extends DialogFragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         choosen_color = 0;
 
+
         //find ID from colorfields
         color_gelb = (ImageView) dialog.findViewById(R.id.color_picker_yellow_id);
         color_red = (ImageView) dialog.findViewById(R.id.color_picker_red_id);
@@ -73,6 +77,7 @@ public class TeamOptionsDialog extends DialogFragment {
 
 
 
+
         //Okay Button
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -80,12 +85,18 @@ public class TeamOptionsDialog extends DialogFragment {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.color_picker_yellow_id:
-                        setColorFieldAlphas(color_gelb, 0.15f);
+
                         choosen_color = R.color.gelb;
+                        setColorFieldAlphas(color_gelb, 0.15f);
+                        choosen_color_image = color_gelb;
+
                         break;
+
                     case R.id.color_picker_purple_id:
                         choosen_color = R.color.purple;
                         setColorFieldAlphas(color_purple, 0.15f);
+                        choosen_color_image = color_purple;
+
                         break;
                     case R.id.color_picker_black_id:
                         choosen_color = R.color.schwarz;
@@ -105,15 +116,18 @@ public class TeamOptionsDialog extends DialogFragment {
                         break;
                 }
 
+
             }
         };
 
-        dialog.findViewById(R.id.color_picker_yellow_id).setOnClickListener(onClickListener);
-        dialog.findViewById(R.id.color_picker_purple_id).setOnClickListener(onClickListener);
-        dialog.findViewById(R.id.color_picker_red_id).setOnClickListener(onClickListener);
-        dialog.findViewById(R.id.color_picker_green_id).setOnClickListener(onClickListener);
-        dialog.findViewById(R.id.color_picker_black_id).setOnClickListener(onClickListener);
-        dialog.findViewById(R.id.color_picker_blue_id).setOnClickListener(onClickListener);
+
+        checkColors(color_gelb, R.color.gelb, onClickListener);
+        checkColors(color_black, R.color.schwarz, onClickListener);
+        checkColors(color_purple, R.color.purple, onClickListener);
+        checkColors(color_green, R.color.grün, onClickListener);
+        checkColors(color_blue, R.color.blau, onClickListener);
+        checkColors(color_red, R.color.rot, onClickListener);
+
 
 
 
@@ -130,9 +144,13 @@ public class TeamOptionsDialog extends DialogFragment {
 
                 listener.onFinishedEditDialog(team_name_string, choosen_color);
 
+                if (team_name_string.length() > 0) {
+                    chosenColors.add(choosen_color);
+                    dismiss();
 
-
-                dismiss();
+                } else {
+                    Toast.makeText(getActivity(), R.string.PleaseEnterTeamName, Toast.LENGTH_LONG).show();
+                }
             }
 
         });
@@ -154,14 +172,6 @@ public class TeamOptionsDialog extends DialogFragment {
         team1_name_new = (TextView) dialog.findViewById(R.id.team_1_tv);
 
 
-
-    }
-
-    /**
-     * Interface To SelectTeams Activity -> receive new Teamname
-     */
-    public interface EditNameDialogListener {
-        void onFinishedEditDialog(String inputText, int color);
     }
 
     /**
@@ -182,7 +192,20 @@ public class TeamOptionsDialog extends DialogFragment {
 
     }
 
+    /**
+     * Interface To SelectTeams Activity -> receive new Teamname
+     */
+    public interface EditNameDialogListener {
+        void onFinishedEditDialog(String inputText, int color);
+    }
 
+    public void checkColors(ImageView colorimage, int color, View.OnClickListener onClickListener) {
+        if (chosenColors.contains(color)) {
+            colorimage.setAlpha(0.1f);
+        } else {
+            colorimage.setOnClickListener(onClickListener);
+        }
+    }
 
 
 }

@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">ActivityToGo</string>
+    <string name="app_name">Smartivity</string>
     <string name="start">Spielen</string>
     <string name="settings">Einstellungen</string>
     <string name="Lornez">Loooorenz ujhuhuhui</string>
     <string name="SelectTeams">Wähle die Anzahl der Teams:</string>
+    <string name="PleaseEnterTeamName">Bitte einen Teamnamen eingeben.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 

@@ -39,11 +39,41 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
     ArrayList<ObjectAnimator> objectAnimators = new ArrayList<>();
     ObjectAnimator[] objectAnimators1 = new ObjectAnimator[2];
 
+    //For the dialog
+    FragmentManager fragmentManager;
+    TeamOptionsDialog teamOptionsDialog;
+
+    //clicked View Indicator
+    int clickedview;
+
 
     @Override
+    /**
+     * Interface to DialogFragment
+     */
     public void onFinishedEditDialog(String inputText, int color) {
-        team1_tv.setText(inputText);
-        DrawableCompat.setTint(team_1.getDrawable(), ContextCompat.getColor(getApplicationContext(), color));
+        if (clickedview == R.id.team_1) {
+            textview_setColors_text(team_1, team1_tv, color, inputText);
+        }
+        if (clickedview == R.id.team_2) {
+            textview_setColors_text(team_2, team2_tv, color, inputText);
+        }
+        if (clickedview == R.id.team_3) {
+            textview_setColors_text(team_3, team3_tv, color, inputText);
+        }
+        if (clickedview == R.id.team_4) {
+            textview_setColors_text(team_4, team4_tv, color, inputText);
+        }
+        if (clickedview == R.id.team_5) {
+            textview_setColors_text(team_5, team5_tv, color, inputText);
+        }
+        if (clickedview == R.id.team_6) {
+            textview_setColors_text(team_6, team6_tv, color, inputText);
+        }
+
+
+
+
 
 
     }
@@ -111,15 +141,48 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
         team_6.setVisibility(View.INVISIBLE);
         team6_tv.setVisibility(View.INVISIBLE);
 
+        //For the Teamoptions-Dialog
+        fragmentManager = getFragmentManager();
+        teamOptionsDialog = new TeamOptionsDialog();
+
+
+
+
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.team_1:
-                        FragmentManager fragmentManager = getFragmentManager();
-                        TeamOptionsDialog teamOptionsDialog = new TeamOptionsDialog();
 
                         teamOptionsDialog.show(fragmentManager, "TeamDialog");
+                        clickedview = R.id.team_1;
+                        break;
+
+                    case R.id.team_2:
+                        teamOptionsDialog.show(fragmentManager, "TeamDialog");
+                        clickedview = R.id.team_2;
+                        break;
+
+                    case R.id.team_3:
+                        teamOptionsDialog.show(fragmentManager, "TeamDialog");
+                        clickedview = R.id.team_3;
+                        break;
+
+                    case R.id.team_4:
+
+                        teamOptionsDialog.show(fragmentManager, "TeamDialog");
+                        clickedview = R.id.team_4;
+                        break;
+
+                    case R.id.team_5:
+
+                        teamOptionsDialog.show(fragmentManager, "TeamDialog");
+                        clickedview = R.id.team_5;
+                        break;
+                    case R.id.team_6:
+
+                        teamOptionsDialog.show(fragmentManager, "TeamDialog");
+                        clickedview = R.id.team_6;
                         break;
 
 
@@ -128,6 +191,13 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
         };
 
         team_1.setOnClickListener(onClickListener);
+        team_2.setOnClickListener(onClickListener);
+        team_3.setOnClickListener(onClickListener);
+        team_4.setOnClickListener(onClickListener);
+        team_5.setOnClickListener(onClickListener);
+        team_6.setOnClickListener(onClickListener);
+
+
 
 
         teamsnumber_seekbar.setThumb(getThumb(teamsnumber_seekbar.getProgress()));
@@ -327,6 +397,43 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
         AssetManager assetManager = getApplicationContext().getAssets();
         Typeface typeface = Typeface.createFromAsset(assetManager, "fonts/itckrist.ttf");
         return typeface;
+    }
+
+    public int getCorrectRessource(int color) {
+        int current_Ressource = R.drawable.ic_team_svg;
+        switch (color) {
+            case R.color.grün:
+                current_Ressource = R.drawable.ic_team_svg_green;
+                break;
+
+            case R.color.blau:
+                current_Ressource = R.drawable.ic_team_svg_blau;
+                break;
+
+            case R.color.gelb:
+                current_Ressource = R.drawable.ic_team_svg_gelb;
+                break;
+
+            case R.color.schwarz:
+                current_Ressource = R.drawable.ic_team_svg_black;
+                break;
+
+            case R.color.purple:
+                current_Ressource = R.drawable.ic_team_svg_purple;
+                break;
+
+            case R.color.rot:
+                current_Ressource = R.drawable.ic_team_svg_red;
+                break;
+
+        }
+        return current_Ressource;
+    }
+
+    public void textview_setColors_text(ImageView imageView, TextView textView, int color, String text) {
+        textView.setText(text);
+        textView.setTextColor(getResources().getColor(color));
+        imageView.setImageResource(getCorrectRessource(color));
     }
 
 

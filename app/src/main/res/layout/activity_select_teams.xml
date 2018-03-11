@@ -42,7 +42,6 @@
         android:layout_marginStart="48dp"
         app:layout_constraintBottom_toTopOf="@+id/seekbar_teams"
         app:layout_constraintStart_toStartOf="parent"
-        android:tint="@color/teamcion_lila"
         app:srcCompat="@drawable/ic_team_svg" />
 
     <ImageView
