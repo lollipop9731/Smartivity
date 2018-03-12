@@ -5,7 +5,10 @@
     <string name="Lornez">Loooorenz ujhuhuhui</string>
     <string name="SelectTeams">Wähle die Anzahl der Teams:</string>
     <string name="PleaseEnterTeamName">Bitte einen Teamnamen eingeben.</string>
-
+    <string name="Namevergeben">Name schon vergeben!</string>
+    <string name="SharedPreferenceName">TeamnameKey</string>
+    <string name="SPcolors">sharedcolor</string>
+    <string name="SPnames">sharednames</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

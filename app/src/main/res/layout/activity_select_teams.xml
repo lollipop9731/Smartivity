@@ -192,5 +192,31 @@
         app:layout_constraintStart_toStartOf="@+id/team_6"
         app:layout_constraintTop_toTopOf="@+id/team_6" />
 
+    <TextView
+        android:id="@+id/weiter_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="52dp"
+        android:text="Weiter"
+        android:clickable="true"
+        android:textColor="@color/weiss"
+        android:textSize="30sp"
+        android:onClick="weiterclick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/weiter_tv"
+        app:layout_constraintStart_toEndOf="@+id/weiter_tv"
+        app:layout_constraintTop_toTopOf="@+id/weiter_tv"
+        app:layout_constraintVertical_bias="0.52"
+        app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
 
 </android.support.constraint.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.lorenz.activitytogo;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.content.ContextCompat;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 
@@ -32,7 +34,7 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
     int prevprogress;
     View thumbview;
 
-    TextView selectTeams_text;
+    TextView selectTeams_text, weiter;
     //Teamnamen
     TextView team1_tv, team2_tv, team3_tv, team4_tv, team5_tv, team6_tv;
 
@@ -100,6 +102,10 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
 
         Typeface schrift = Schriftarttypeface();
         selectTeams_text.setTypeface(schrift);
+
+
+        weiter = (TextView) findViewById(R.id.weiter_tv);
+        weiter.setTypeface(schrift);
 
         team_1 = (ImageView) findViewById(R.id.team_1);
         team1_tv = (TextView) findViewById(R.id.team_1_tv);
@@ -436,5 +442,70 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
         imageView.setImageResource(getCorrectRessource(color));
     }
 
+    public void weiterclick(View view) {
+
+        for (int i = 1; i <= teamsnumber_seekbar.getProgress(); i++) {
+            switch (i) {
+                case 1:
+                    setTeamnameAndColor("1", team1_tv.getText().toString(), team1_tv.getCurrentTextColor());
+                    break;
+                case 2:
+                    setTeamnameAndColor("2", team2_tv.getText().toString(), team2_tv.getCurrentTextColor());
+                    break;
+                case 3:
+                    setTeamnameAndColor("3", team3_tv.getText().toString(), team3_tv.getCurrentTextColor());
+                    break;
+                case 4:
+                    setTeamnameAndColor("4", team4_tv.getText().toString(), team4_tv.getCurrentTextColor());
+                    break;
+                case 5:
+                    setTeamnameAndColor("5", team5_tv.getText().toString(), team5_tv.getCurrentTextColor());
+                    break;
+                case 6:
+                    setTeamnameAndColor("6", team6_tv.getText().toString(), team6_tv.getCurrentTextColor());
+                    break;
+            }
+        }
+
+
+        Intent intent = new Intent(this, ImageViewTest.class);
+        //startActivity(intent);
+    }
+
+    /**
+     * @param teamnumber 1-6
+     * @param name       name of the team
+     * @param color      choosen color
+     */
+    public void setTeamnameAndColor(String teamnumber, String name, int color) {
+        SharedPreferences sharedPreference = getSharedPreferences(R.string.SharedPreferenceName + teamnumber, MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreference.edit();
+        editor.putInt(getResources().getString(R.string.SPcolors) + teamnumber, color);
+        editor.putString(getResources().getString(R.string.SPnames) + teamnumber, name);
+        editor.commit();
+
+
+    }
+
+    /**
+     * @param teamnumber 1-6
+     * @return name of the team
+     */
+    public String getTeamName(String teamnumber) {
+        SharedPreferences sharedPreference = getSharedPreferences(R.string.SharedPreferenceName + teamnumber, MODE_PRIVATE);
+        //returns null if no teammname
+        String name = sharedPreference.getString(getResources().getString(R.string.SPnames) + teamnumber, null);
+        return name;
+
+    }
+
+    public int getTeamColor(String teamnumber) {
+        SharedPreferences sharedPreference = getSharedPreferences(R.string.SharedPreferenceName + teamnumber, MODE_PRIVATE);
+        //returns null if no teammname
+        int color = sharedPreference.getInt(getResources().getString(R.string.SPcolors) + teamnumber, 0);
+        return color;
+
+    }
 
 }

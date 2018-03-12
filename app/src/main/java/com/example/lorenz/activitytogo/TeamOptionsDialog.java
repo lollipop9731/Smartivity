@@ -30,6 +30,7 @@ public class TeamOptionsDialog extends DialogFragment {
     int choosen_color;
     ImageView color_gelb, color_green, color_black, color_blue, color_purple, color_red, choosen_color_image;
     ArrayList<Integer> chosenColors = new ArrayList<>();
+    ArrayList<String> chosenNames = new ArrayList<>();
 
 
     private EditNameDialogListener listener;
@@ -144,12 +145,18 @@ public class TeamOptionsDialog extends DialogFragment {
 
                 listener.onFinishedEditDialog(team_name_string, choosen_color);
 
-                if (team_name_string.length() > 0) {
-                    chosenColors.add(choosen_color);
-                    dismiss();
-
-                } else {
+                if (team_name_string.length() <= 0) {
                     Toast.makeText(getActivity(), R.string.PleaseEnterTeamName, Toast.LENGTH_LONG).show();
+                }
+                if (!checkNames(team_name_string, chosenNames)) {
+                    Toast.makeText(getActivity(), R.string.Namevergeben, Toast.LENGTH_LONG).show();
+                }
+
+
+                if (team_name_string.length() > 0 && checkNames(team_name_string, chosenNames)) {
+                    chosenColors.add(choosen_color);
+                    chosenNames.add(team_name_string);
+                    dismiss();
                 }
             }
 
@@ -206,6 +213,23 @@ public class TeamOptionsDialog extends DialogFragment {
             colorimage.setOnClickListener(onClickListener);
         }
     }
+
+    /**
+     * Checks if the name is still avaible
+     *
+     * @param name      the name to be checked
+     * @param arrayList where all names are in
+     * @return true = available
+     */
+    public boolean checkNames(String name, ArrayList arrayList) {
+        if (arrayList.contains(name)) {
+            return false;
+        }
+        return true;
+    }
+
+
+
 
 
 }
