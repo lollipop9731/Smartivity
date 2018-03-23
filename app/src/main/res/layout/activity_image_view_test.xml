@@ -10,20 +10,10 @@
     tools:context="com.example.lorenz.activitytogo.ImageViewTest"
     android:background="@drawable/gradient">
 
-    <ImageView
-        android:id="@+id/baumstamm_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
-        android:adjustViewBounds="true"
-        android:cropToPadding="true"
-        android:scaleX="2.5"
-        android:scaleY="2.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baumstamm" />
+    <!--Todo: Add Textview under toolbar with current team : Bsp. Team 1 ist an der Reihe -->
+    <!-- Todo: Add Current symbol (draw, phantomine, explain) -->
+    <!-- Todo: Add scoreview-->
+
 
     <TextView
         android:id="@+id/points"
@@ -35,6 +25,21 @@
         android:textSize="56sp"
         android:textColor="@color/colorAccent"
         android:text="0" />
+
+    <ImageView
+        android:id="@+id/empty_wordcard"
+        android:layout_width="188dp"
+        android:layout_height="117dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp" />
+
+    <TextView
+        android:id="@+id/countdown_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
 
 </RelativeLayout>

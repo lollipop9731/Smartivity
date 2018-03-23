@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.EditNameDialogListener {
 
+    //Todo set inital text for teamnames and color based on the SharedPreferences
     SeekBar teamsnumber_seekbar;
     ImageView team_1, team_2, team_3, team_4, team_5, team_6;
     int counter = 0;
@@ -72,10 +73,6 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
         if (clickedview == R.id.team_6) {
             textview_setColors_text(team_6, team6_tv, color, inputText);
         }
-
-
-
-
 
 
     }
@@ -152,8 +149,6 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
         teamOptionsDialog = new TeamOptionsDialog();
 
 
-
-
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -202,8 +197,6 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
         team_4.setOnClickListener(onClickListener);
         team_5.setOnClickListener(onClickListener);
         team_6.setOnClickListener(onClickListener);
-
-
 
 
         teamsnumber_seekbar.setThumb(getThumb(teamsnumber_seekbar.getProgress()));
@@ -469,7 +462,7 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
 
 
         Intent intent = new Intent(this, ImageViewTest.class);
-        //startActivity(intent);
+        startActivity(intent);
     }
 
     /**

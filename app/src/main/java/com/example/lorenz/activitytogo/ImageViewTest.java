@@ -4,6 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.app.ActionBar;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.CountDownTimer;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,19 +28,27 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class ImageViewTest extends AppCompatActivity implements View.OnClickListener {
+    //Todo Add possibility to hide text with click on the view or spwipe upwards? Maybe animation with rotation
+    //Todo Custom Actionbar with back arrow and possibliity to pause -> Pause Menu
 
     private static final int SWIPE_MIN_DISTANCE = 10;
     private static final int SWIPE_MAX_OFF_PATH = 150;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
     private float xcurrentPos,ycurrentPos,displaywidth;
+    private Paint paint = new Paint();
 
     public int points;
+    Typeface typefacenew;
 
 
-    ImageView baumstamm;
-    TextView pointsText;
+    ImageView wordcard;
+    TextView pointsText, countdown;
+    BitmapDrawable bitmapDrawable;
+
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
 
@@ -42,16 +58,40 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_image_view_test);
 
         //initalizing
-        baumstamm = (ImageView)findViewById(R.id.baumstamm_image);
-        pointsText = (TextView) findViewById(R.id.points);
 
+        pointsText = (TextView) findViewById(R.id.points);
+        wordcard = (ImageView) findViewById(R.id.empty_wordcard);
+        countdown = (TextView) findViewById(R.id.countdown_tv);
+
+        //initial number of points
         points = 0;
+
         //calculation animation
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         displaywidth =(float) displayMetrics.widthPixels;
         xcurrentPos = (float) ((displaywidth/displayMetrics.density)+200);
 
-        baumstamm.setOnClickListener(this);
+        CountDownTimer countDownTimer = new CountDownTimer(60000, 1000) {
+            @Override
+            public void onTick(long l) {
+                countdown.setText(Long.toString(l / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+
+
+        typefacenew = Typeface.createFromAsset(getAssets(), "fonts/itckrist.ttf");
+
+        //First Drawable with random word
+        bitmapDrawable = writeOnDrawable(getWordfromPool());
+        wordcard.setImageDrawable(bitmapDrawable);
+
+        //Todo Add counter with 60seconds
+        wordcard.setOnClickListener(this);
 
         gestureDetector = new GestureDetector(this,new MyGestureDetector());
 
@@ -61,7 +101,9 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
                 return gestureDetector.onTouchEvent(motionEvent);
             }
         };
-        baumstamm.setOnTouchListener(gestureListener);
+        wordcard.setOnTouchListener(gestureListener);
+
+
 
     }
 
@@ -75,17 +117,22 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
                     return false;
                 };
 
+
                 //swipe to the left
                 if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX)>SWIPE_THRESHOLD_VELOCITY){
 
                     //image goes to the left
-                    animateImageView(baumstamm,400,(float)(-0.75*displaywidth),"x");
+
+                    animateImageView(wordcard, 400, (float) (-0.75 * displaywidth), "x");
+
+
+
                     points = points - 1;
 
 
                     //swipe to right
                 }else if(e2.getX()-e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX)>SWIPE_THRESHOLD_VELOCITY){
-                    animateImageView(baumstamm,400,(float)(1.5*displaywidth),"x");
+                    animateImageView(wordcard, 400, (float) (1.5 * displaywidth), "x");
                     points = points + 1;
                     };
 
@@ -116,18 +163,32 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
      */
     public void animateImageView(final View view, int duration, final float distance, String propertyname){
 
+        //center position
+        int x_pos = (int) (displaywidth / 2) - (view.getWidth() / 2);
+
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view,propertyname,distance);
         objectAnimator.setDuration(duration);
         objectAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                //spwipe to the right
                 if(distance>0) {
 
-                    view.setX(550);
 
+                    int x_pos = (int) (displaywidth / 2) - (view.getWidth() / 2);
+                    view.setX(x_pos);
+                    bitmapDrawable = writeOnDrawable(getWordfromPool());
+                    wordcard.setImageDrawable(bitmapDrawable);
+
+                    //swipe to the left
                 }else{
 
-                    view.setX(550);
+                    //center position of textview
+                    int x_pos = (int) (displaywidth / 2) - (view.getWidth() / 2);
+                    view.setX(x_pos);
+                    //new random word from pool
+                    bitmapDrawable = writeOnDrawable(getWordfromPool());
+                    wordcard.setImageDrawable(bitmapDrawable);
 
                 }
 
@@ -135,5 +196,42 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
         });
         objectAnimator.start();
 
+    }
+
+    /**
+     * Writes Text on  given drawablebackground
+     *
+     * @param text custom text
+     * @return BitmapDrwable with the text on the drawable
+     */
+    public BitmapDrawable writeOnDrawable(String text) {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.textfeld).copy(Bitmap.Config.ARGB_8888, true);
+
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(getResources().getColor(R.color.weiss));
+        paint.setTextSize(100);
+        paint.setTypeface(typefacenew);
+        paint.setTextAlign(Paint.Align.CENTER);
+
+        Canvas canvas = new Canvas(bitmap);
+
+        int x_pos = (canvas.getWidth() / 2);
+        int y_pos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2));
+        canvas.drawText(text, x_pos, y_pos, paint);
+
+        return new BitmapDrawable(getResources(), bitmap);
+
+    }
+
+    /**
+     * @return a random word from the wordpoolarray
+     */
+    public String getWordfromPool() {
+        Resources resources = getResources();
+        String[] wordpool = resources.getStringArray(R.array.Wordpool);
+
+        Random random = new Random();
+        int i = random.nextInt(wordpool.length);
+        return wordpool[i];
     }
 }

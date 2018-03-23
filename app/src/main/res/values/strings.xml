@@ -9,6 +9,13 @@
     <string name="SharedPreferenceName">TeamnameKey</string>
     <string name="SPcolors">sharedcolor</string>
     <string name="SPnames">sharednames</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <string-array name="Wordpool">
+        <item>Baumstamm</item>
+        <item>Testwort</item>
+        <item>Wasserfall</item>
+        <item>Monitor</item>
+    </string-array>
+
 
 </resources>
