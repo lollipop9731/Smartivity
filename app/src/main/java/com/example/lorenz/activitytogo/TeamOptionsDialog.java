@@ -24,6 +24,8 @@ import com.example.lorenz.activitytogo.R;
 
 public class TeamOptionsDialog extends DialogFragment {
 
+    //Todo add function for dismiss button
+
     EditText team_name;
     String team_name_string;
     TextView team1_name_new, test;

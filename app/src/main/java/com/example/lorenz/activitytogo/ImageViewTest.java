@@ -122,8 +122,9 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
                 if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX)>SWIPE_THRESHOLD_VELOCITY){
 
                     //image goes to the left
+                    //todo change to swipe right for correct word -> switch left and right
 
-                    animateImageView(wordcard, 400, (float) (-0.75 * displaywidth), "x");
+                    animateImageView(wordcard, 270, (float) (-0.75 * displaywidth), "x");
 
 
 
@@ -132,7 +133,7 @@ public class ImageViewTest extends AppCompatActivity implements View.OnClickList
 
                     //swipe to right
                 }else if(e2.getX()-e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX)>SWIPE_THRESHOLD_VELOCITY){
-                    animateImageView(wordcard, 400, (float) (1.5 * displaywidth), "x");
+                    animateImageView(wordcard, 300, (float) (1.5 * displaywidth), "x");
                     points = points + 1;
                     };
 

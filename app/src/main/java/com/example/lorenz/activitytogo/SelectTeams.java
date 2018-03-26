@@ -29,6 +29,8 @@ import java.util.ArrayList;
 public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.EditNameDialogListener {
 
     //Todo set inital text for teamnames and color based on the SharedPreferences
+
+    //todo nachträglich namen ändern und farbe muss möglich sein
     SeekBar teamsnumber_seekbar;
     ImageView team_1, team_2, team_3, team_4, team_5, team_6;
     int counter = 0;
