@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ImageViewTest" />
-        <activity android:name=".SelectTeams"></activity>
+        <activity android:name=".MainGameActivity" />
+        <activity android:name=".SelectTeamsActivity"></activity>
     </application>
 
 </manifest>

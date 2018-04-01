@@ -24,7 +24,7 @@ import com.example.lorenz.activitytogo.R;
 
 public class TeamOptionsDialog extends DialogFragment {
 
-    //Todo add function for dismiss button
+
 
     EditText team_name;
     String team_name_string;
@@ -164,6 +164,13 @@ public class TeamOptionsDialog extends DialogFragment {
 
         });
 
+        dialog.findViewById(R.id.close_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
+
 
         //.setOnClickListener(onClickListener);
 
@@ -202,7 +209,7 @@ public class TeamOptionsDialog extends DialogFragment {
     }
 
     /**
-     * Interface To SelectTeams Activity -> receive new Teamname
+     * Interface To SelectTeamsActivity Activity -> receive new Teamname
      */
     public interface EditNameDialogListener {
         void onFinishedEditDialog(String inputText, int color);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context="com.example.lorenz.activitytogo.SelectTeams"
+    tools:context="com.example.lorenz.activitytogo.SelectTeamsActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <android.support.v7.widget.Toolbar
@@ -240,6 +240,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 
 </android.support.constraint.ConstraintLayout>

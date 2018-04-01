@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -18,15 +17,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v4.content.ContextCompat;
 import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 
-public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.EditNameDialogListener {
+public class SelectTeamsActivity extends AppCompatActivity implements TeamOptionsDialog.EditNameDialogListener {
 
     //Todo set inital text for teamnames and color based on the SharedPreferences
 
@@ -92,7 +88,7 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //inflate layout for custom seekbarthumb
-        thumbview = LayoutInflater.from(SelectTeams.this).inflate(R.layout.thumb_layout, null, false);
+        thumbview = LayoutInflater.from(SelectTeamsActivity.this).inflate(R.layout.thumb_layout, null, false);
 
 
         teamsnumber_seekbar = (SeekBar) findViewById(R.id.seekbar_teams);
@@ -463,7 +459,7 @@ public class SelectTeams extends AppCompatActivity implements TeamOptionsDialog.
         }
 
 
-        Intent intent = new Intent(this, ImageViewTest.class);
+        Intent intent = new Intent(this, MainGameActivity.class);
         startActivity(intent);
     }
 
