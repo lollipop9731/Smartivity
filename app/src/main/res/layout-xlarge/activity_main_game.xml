@@ -15,8 +15,6 @@
     <!-- Todo: Add scoreview-->
 
 
-
-
     <ImageView
         android:id="@+id/empty_wordcard"
         android:layout_width="188dp"
@@ -33,7 +31,7 @@
         android:layout_centerVertical="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="50dp"
-        android:textColor="@color/schwarz"
+        android:textColor="@color/colorAccent"
         android:textSize="56sp" />
 
     <TextView
@@ -44,7 +42,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="150dp"
         android:textSize="56sp"
-        android:textColor="@color/schwarz"
+        android:textColor="@color/colorAccent"
         android:text="0" />
 
     <ImageView
@@ -65,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/empty_wordcard"
         android:layout_marginTop="14dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="20dp"
         android:layout_toEndOf="@+id/points"
         android:layout_toRightOf="@+id/points"
 
@@ -76,31 +74,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/arrow_right"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="20dp"
         android:layout_toLeftOf="@+id/points"
         android:layout_toStartOf="@+id/points"
         app:srcCompat="@drawable/ic_arrow_left_big" />
-
-    <ImageView
-        android:id="@+id/refresh_word"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/pause_button"
-        android:layout_alignRight="@+id/pause_button"
-        android:layout_alignTop="@+id/arrow_right"
-        android:layout_marginTop="31dp"
-        app:srcCompat="@drawable/ic_refresh_black_24dp" />
-
-    <ImageView
-        android:id="@+id/right_word"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/refresh_word"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        app:srcCompat="@drawable/ic_check_black_24dp" />
 
 
 </RelativeLayout>
