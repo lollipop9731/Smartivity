@@ -24,9 +24,11 @@ import java.util.ArrayList;
 
 public class SelectTeamsActivity extends AppCompatActivity implements TeamOptionsDialog.EditNameDialogListener {
 
-    //Todo set inital text for teamnames and color based on the SharedPreferences
+
 
     //todo nachträglich namen ändern und farbe muss möglich sein
+    //todo animation for Dialogpopup
+
     SeekBar teamsnumber_seekbar;
     ImageView team_1, team_2, team_3, team_4, team_5, team_6;
     int counter = 0;
@@ -479,24 +481,8 @@ public class SelectTeamsActivity extends AppCompatActivity implements TeamOption
 
     }
 
-    /**
-     * @param teamnumber 1-6
-     * @return name of the team
-     */
-    public String getTeamName(String teamnumber) {
-        SharedPreferences sharedPreference = getSharedPreferences(R.string.SharedPreferenceName + teamnumber, MODE_PRIVATE);
-        //returns null if no teammname
-        String name = sharedPreference.getString(getResources().getString(R.string.SPnames) + teamnumber, null);
-        return name;
 
-    }
 
-    public int getTeamColor(String teamnumber) {
-        SharedPreferences sharedPreference = getSharedPreferences(R.string.SharedPreferenceName + teamnumber, MODE_PRIVATE);
-        //returns null if no teammname
-        int color = sharedPreference.getInt(getResources().getString(R.string.SPcolors) + teamnumber, 0);
-        return color;
 
-    }
 
 }

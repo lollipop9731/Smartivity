@@ -3,6 +3,7 @@ package com.example.lorenz.activitytogo;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,25 +32,22 @@ import java.util.Random;
 
 public class MainGameActivity extends AppCompatActivity implements View.OnClickListener {
     //Todo Add possibility to hide text with click on the view or spwipe upwards? Maybe animation with rotation
-    //Todo Custom Actionbar with back arrow and possibliity to pause -> Pause Menu
+    //Todo Pause Menu !!
+    //Todo add current points next to teamname
+
 
     private static final int SWIPE_MIN_DISTANCE = 10;
     private static final int SWIPE_MAX_OFF_PATH = 150;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-
-    private float xcurrentPos, ycurrentPos, displaywidth;
-    private Paint paint = new Paint();
-
     public int points;
     Typeface typefacenew;
-
-
     ImageView wordcard;
-    TextView pointsText, countdown;
+    TextView pointsText, countdown, teamname;
     BitmapDrawable bitmapDrawable;
-
-    private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
+    private float xcurrentPos, ycurrentPos, displaywidth;
+    private Paint paint = new Paint();
+    private GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +59,17 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
         pointsText = (TextView) findViewById(R.id.points);
         wordcard = (ImageView) findViewById(R.id.empty_wordcard);
         countdown = (TextView) findViewById(R.id.countdown_tv);
+        teamname = (TextView) findViewById(R.id.teamname_main_tv);
 
 
         //initial number of points
         points = 0;
+
+        //initial team name on first start
+        teamname.setText(getTeamName("1"));
+
+        //teamcolor on first start
+        teamname.setTextColor(getTeamColor("1"));
 
         //calculation animation
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
@@ -89,7 +94,11 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
         }.start();
 
 
+        //Typeface for custom font
         typefacenew = Typeface.createFromAsset(getAssets(), "fonts/itckrist.ttf");
+
+        //Typeface for TextViews
+        teamname.setTypeface(typefacenew);
 
         //First Drawable with random word
         bitmapDrawable = writeOnDrawable(getWordfromPool());
@@ -108,49 +117,6 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
         };
         wordcard.setOnTouchListener(gestureListener);
 
-
-    }
-
-    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-
-            try {
-                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
-                    return false;
-                }
-                ;
-
-
-                //swipe to the left
-                if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-
-                    //image goes to the left -> right answer
-
-
-                    animateImageView(wordcard, 270, (float) (-0.75 * displaywidth), "x");
-
-
-                    points = points + 1;
-
-
-                    //swipe to right -> wrong answer
-                } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    animateImageView(wordcard, 300, (float) (1.5 * displaywidth), "x");
-                    points = points - 1;
-                }
-                ;
-
-
-                pointsText.setText(Integer.toString(points));
-
-
-            } catch (Exception e) {
-                //nothing
-            }
-            return false;
-        }
 
     }
 
@@ -237,6 +203,69 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
         Random random = new Random();
         int i = random.nextInt(wordpool.length);
         return wordpool[i];
+    }
+
+    /**
+     * @param teamnumber 1-6
+     * @return name of the team
+     */
+    public String getTeamName(String teamnumber) {
+        SharedPreferences sharedPreference = getSharedPreferences(R.string.SharedPreferenceName + teamnumber, MODE_PRIVATE);
+        //returns null if no teammname
+        String name = sharedPreference.getString(getResources().getString(R.string.SPnames) + teamnumber, null);
+        return name;
+
+    }
+
+    public int getTeamColor(String teamnumber) {
+        SharedPreferences sharedPreference = getSharedPreferences(R.string.SharedPreferenceName + teamnumber, MODE_PRIVATE);
+        //returns null if no teammname
+        int color = sharedPreference.getInt(getResources().getString(R.string.SPcolors) + teamnumber, 0);
+        return color;
+
+    }
+
+    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+            try {
+                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
+                    return false;
+                }
+                ;
+
+
+                //swipe to the left
+                if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+
+                    //image goes to the left -> right answer
+
+
+                    animateImageView(wordcard, 270, (float) (-0.75 * displaywidth), "x");
+
+
+                    points = points + 1;
+
+
+                    //swipe to right -> wrong answer
+                } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    animateImageView(wordcard, 300, (float) (1.5 * displaywidth), "x");
+                    points = points - 1;
+                }
+                ;
+
+
+                pointsText.setText(Integer.toString(points));
+
+
+            } catch (Exception e) {
+                //nothing
+            }
+            return false;
+        }
+
     }
 
 

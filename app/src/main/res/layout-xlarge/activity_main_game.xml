@@ -10,9 +10,9 @@
     tools:context="com.example.lorenz.activitytogo.MainGameActivity"
     android:background="@drawable/gradient">
 
-    <!--Todo: Add Textview under toolbar with current team : Bsp. Team 1 ist an der Reihe -->
-    <!-- Todo: Add Current symbol (draw, phantomine, explain) -->
-    <!-- Todo: Add scoreview-->
+
+
+
 
 
     <ImageView
